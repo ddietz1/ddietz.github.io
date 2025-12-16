@@ -1,0 +1,1324 @@
+/* ============================================
+    RESET & BASE STYLES
+    ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Force remove all underlines from all links */
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-style: none !important;
+  text-decoration-color: transparent !important;
+}
+
+/* Specific reset for navigation: REMOVES THE BOTTOM LINE ISSUE */
+nav a,
+.site-nav a,
+.nav-link {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  /* --- ESSENTIAL FIX: REMOVES ANY ACCIDENTAL BORDER/SHADOW --- */
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-gray-light: #f5f5f5;
+  --color-gray-medium: #666666;
+  --color-gray-dark: #333333;
+  --color-gray-border: #cccccc;
+  --color-red-light: #f14c4c;
+  --font-main: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  --font-nav: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  --transition-speed: 0.3s;
+  --max-width: 1200px;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-black);
+  background-color: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* ============================================
+    TYPOGRAPHY
+    ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: var(--color-black);
+  text-decoration: none !important;
+  transition: opacity var(--transition-speed);
+}
+
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  opacity: 0.7;
+  text-decoration: none !important;
+}
+
+/* ============================================
+    NAVIGATION
+    ============================================ */
+
+.site-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-gray-border);
+  z-index: 1000;
+  /* --- ADJUSTED: REDUCED VERTICAL PADDING TO SHRINK HEADER HEIGHT --- */
+  padding: 0.9rem 0; 
+}
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  /* --- ESSENTIAL FLEXBOX FOR MAIN LAYOUT --- */
+  display: flex;
+  justify-content: space-between; /* Pushes name/subtitle left and links/icons right */
+  align-items: center; /* Vertically centers the two main groups */
+}
+
+/* Styles for the combined logo/name/subtitle group */
+.nav-logo a {
+  /* --- ESSENTIAL FLEXBOX FOR NAME/SUBTITLE ALIGNMENT --- */
+  display: flex;
+  align-items: center; /* Aligns items vertically */
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-family: var(--font-nav);
+  color: var(--color-black);
+}
+
+.nav-logo .nav-name {
+    /* Ensures the name is bold and primary */
+    font-weight: 700;
+    font-size: 1.5em; /* Make the name slightly larger than the container font-size */
+}
+
+/* New element for grouping the Resume link and icons */
+.nav-links-and-icons {
+    /* --- ESSENTIAL FLEXBOX FOR LINK AND ICON ROW ALIGNMENT --- */
+    display: flex;
+    align-items: center; /* Vertically centers the text link with the icons */
+    gap: 20px; /* Space between the 'Resume' link and the icons */
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: var(--font-nav);
+  text-decoration: none !important;
+}
+
+.nav-link:hover,
+.nav-link:focus,
+.nav-link:active,
+.nav-link:visited {
+  text-decoration: none !important;
+}
+
+/* --- ISOLATED NAV BAR ICON STYLES --- */
+.nav-contact-icons {
+    /* Simple row for icons without any extra padding or borders */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Tight spacing between icons */
+}
+
+.nav-icon-link {
+    /* Icon wrapper styles, inherited from the old look but with new class name */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: all var(--transition-speed);
+    background-color: var(--color-gray-light);
+}
+
+.nav-icon-link:hover {
+    background-color: var(--color-black);
+    transform: translateY(-2px);
+    opacity: 1;
+}
+
+.nav-icon-link .nav-icon {
+    /* SVG icon styles */
+    width: 20px;
+    height: 20px;
+    color: var(--color-black);
+}
+
+.nav-icon-link:hover .nav-icon {
+    color: var(--color-white);
+}
+/* ----------------------------------- */
+
+/* ============================================
+    MAIN CONTENT
+    ============================================ */
+
+/* NOTE: Since the header height changed, the margin-top here might also need adjustment. 
+   I've left it at 80px for now, assuming the original site-nav padding resulted in a total height close to 80px. */
+.main-content {
+  margin-top: 80px; /* Account for fixed nav */
+  min-height: calc(100vh - 80px);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ============================================
+    HOME PAGE
+    ============================================ */
+
+.home-page {
+  width: 100%;
+}
+
+/* ============================================
+    PROJECTS SECTION
+    ============================================ */
+
+.projects-section {
+  padding: 0.5rem 0 var(--spacing-xl) 0; 
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0rem;
+}
+
+/* ============================================
+    PROJECT CARDS
+    ============================================ */
+
+.project-card {
+  position: relative;
+  transition: transform var(--transition-speed);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+}
+
+.card-link {
+  display: block;
+  color: inherit;
+}
+
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: var(--color-gray-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-gif {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity var(--transition-speed);
+}
+
+.card-link:hover .card-overlay {
+  opacity: 1;
+}
+
+.view-project-text {
+  color: var(--color-white);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+
+.card-content {
+  padding: 1.0rem 0;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.7rem;
+  font-weight: 200;
+  border: 0.1px solid var(--color-gray-border);
+  background-color: var(--color-white);
+  border-radius: 999px;
+  transition: all var(--transition-speed);
+}
+
+.card-link:hover .tag {
+  background-color: var(--color-gray-dark);
+  color: var(--color-white);
+  border-color: var(--color-gray-dark);
+}
+
+/* ============================================
+    ABOUT SECTION (includes contact)
+    ============================================ */
+
+.about-section {
+  padding: var(--spacing-xl) 0;
+  background-color: var(--color-white);
+}
+
+.about-section h2 {
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 4rem;
+  align-items: start;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about-photo {
+  position: sticky;
+  top: 120px;
+}
+
+.profile-image {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.profile-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.about-text {
+  padding-top: 0;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: var(--color-gray-dark);
+}
+
+.about-text p:last-of-type {
+  margin-bottom: 2.5rem;
+}
+
+/* Contact info integrated into about (Original, untouched general styles) */
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-gray-border);
+  flex-wrap: wrap;
+}
+
+.contact-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  transition: all var(--transition-speed);
+  background-color: var(--color-gray-light);
+}
+
+.contact-icon-link:hover {
+  background-color: var(--color-black);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+
+.contact-icon-link .contact-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--color-black);
+}
+
+.contact-icon-link:hover .contact-icon {
+  color: var(--color-white);
+}
+
+.email-contact {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background-color: var(--color-gray-light);
+  border-radius: 999px;
+  transition: all var(--transition-speed);
+}
+
+.email-contact:hover {
+  background-color: var(--color-gray-medium);
+}
+
+.email-text {
+  font-size: 0.95rem;
+  color: var(--color-gray-dark);
+  font-weight: 400;
+}
+
+.copy-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all var(--transition-speed);
+  padding: 0;
+}
+
+.copy-icon-btn:hover {
+  background-color: var(--color-black);
+}
+
+.copy-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-gray-dark);
+}
+
+.copy-icon-btn:hover .copy-icon {
+  color: var(--color-white);
+}
+
+.copy-icon-btn.copied {
+  background-color: var(--color-black);
+}
+
+.copy-icon-btn.copied .copy-icon {
+  color: var(--color-white);
+}
+
+/* ============================================
+    PROJECT PAGE
+    ============================================ */
+
+.project-page {
+  padding: var(--spacing-lg) 0;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.project-container {
+  max-width: 1400px; /* Much wider - uses almost full screen on large displays */
+  width: 95%; /* 95% of viewport width */
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.project-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--color-gray-border);
+}
+
+.project-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.project-content {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 100%; /* Use full container width */
+}
+
+.project-content h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.025em;
+}
+
+.project-content h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+/* Images take full width of container */
+.project-content img {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem 0;
+  border: 1px solid var(--color-gray-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Videos take full width */
+.project-content video {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem 0;
+  border: 1px solid var(--color-gray-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel Styles */
+.project-carousel {
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 8px;
+  background-color: var(--color-gray-light);
+  border: 1px solid var(--color-gray-border);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-item {
+  display: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.carousel-item.active {
+  display: block;
+  opacity: 1;
+  position: relative;
+}
+
+.carousel-item img,
+.carousel-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border: none;
+  margin: 0;
+}
+
+/* Navigation Arrows */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--color-white);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-speed);
+  z-index: 10;
+}
+
+.carousel-nav:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-prev {
+  left: 20px;
+}
+
+.carousel-next {
+  right: 20px;
+}
+
+.carousel-nav svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Navigation Dots */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background-color: var(--color-gray-border);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background-color: var(--color-gray-medium);
+  transform: scale(1.2);
+}
+
+.carousel-dot.active {
+  background-color: var(--color-gray-dark);
+  width: 14px;
+  height: 14px;
+}
+
+
+/* Side-by-side images - responsive grid */
+.side-by-side {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+  width: 100%;
+}
+
+.side-by-side img {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Code blocks take full width */
+.project-content pre {
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 1.5rem;
+  background-color: var(--color-gray-light);
+  border-radius: 4px;
+  margin: 2rem 0;
+}
+
+.project-content code {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* Tables are responsive and full-width */
+.project-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  overflow-x: auto;
+  display: block;
+}
+
+.project-content table th,
+.project-content table td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--color-gray-border);
+  text-align: left;
+}
+
+.project-content table th {
+  background-color: var(--color-gray-light);
+  font-weight: 600;
+}
+
+.project-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 0.75rem;
+
+  border: 1px solid var(--color-gray-medium); 
+
+  border-bottom: 1px solid var(--color-gray-medium) !important; 
+  box-shadow: none !important;
+
+  font-weight: 400;
+  transition: all var(--transition-speed);
+}
+
+.back-link:hover {
+  background-color: var(--color-black);
+  color: var(--color-white);
+  opacity: 1;
+}
+
+/* ============================================
+    PAGE LAYOUT (Resume, etc.)
+    ============================================ */
+
+.page {
+  padding: 0; /* No padding for full-width pages */
+}
+
+.page-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 0rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+  padding-bottom: 0rem;
+  border-bottom: 1px solid var(--color-gray-border);
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.page-content {
+  margin-top: 0; /* Remove top margin for full-width content */
+}
+
+/* PDF Embed */
+.pdf-embed {
+  width: 100%;
+  height: 85vh;
+  border: 1px solid var(--color-black);
+  margin-top: 2rem;
+}
+
+/* ============================================
+    FOOTER
+    ============================================ */
+
+.site-footer {
+  border-top: 0px solid var(--color-black);
+  padding: 2rem 0;
+  margin-top: var(--spacing-xl);
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.footer-content p {
+  font-size: 0.875rem;
+  color: var(--color-gray-medium);
+  margin: 0;
+}
+
+/* ============================================
+    RESPONSIVE DESIGN
+    ============================================ */
+.nav-logo .nav-subtitle {
+  font-family: var(--font-nav);
+
+  color: var(--color-gray-dark);
+
+  font-size: 1.2rem;
+
+  font-weight: 500;
+
+  border-left: 1px solid var(--color-gray-border);
+
+  padding-left: 0.75rem;
+  margin-left: 0.75rem;
+}
+
+/* Large Desktop (ultra-wide) */
+@media (min-width: 1600px) {
+  .project-container {
+    max-width: 1600px;
+    width: 90%;
+  }
+
+  .project-content {
+    font-size: 1.1rem;
+  }
+
+  .side-by-side {
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* Tablet (2 columns) */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* About section tablet */
+  .about-content {
+    grid-template-columns: 180px 1fr;
+    gap: 2.5rem;
+    max-width: 100%;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* Original contact info is for the about section */
+  .contact-info {
+    gap: 1.25rem;
+  }
+
+  /* Project page tablet optimization */
+  .project-container {
+    max-width: 100%;
+    width: 92%;
+    padding: 0 1.5rem;
+  }
+
+  .project-title {
+    font-size: 2.25rem;
+  }
+
+  .project-content {
+    font-size: 1rem;
+  }
+
+  .project-content h2 {
+    font-size: 1.65rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.25rem;
+  }
+
+  /* Side by side adapts to smaller minmax
+  .side-by-side {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  } */
+
+  .side-by-side {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    gap: 2rem;
+    margin: 2rem 0;
+    width: 50%;
+  }
+
+  /* Tables scroll on tablet */
+  .project-content table {
+    font-size: 0.95rem;
+  }
+
+
+  /* Carousel tablet adjustments */
+  .carousel-inner {
+    height: 500px;
+  }
+
+  .carousel-nav {
+    width: 44px;
+    height: 44px;
+  }
+
+  .carousel-prev {
+    left: 15px;
+  }
+
+  .carousel-next {
+    right: 15px;
+  }
+
+}
+/* Mobile (1 column) */
+@media (max-width: 768px) {
+  :root {
+    --spacing-lg: 3rem;
+    --spacing-xl: 4rem;
+  }
+
+  body {
+    font-size: 16px;
+  }
+
+  .nav-container {
+    /* Reset main nav container to allow stacking on mobile if needed */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .nav-logo a {
+    /* Keep name and subtitle aligned horizontally */
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    color: var(--color-black);
+    font-weight: 700;
+  }
+
+  .nav-logo .nav-name {
+    font-weight: 700;
+    color: var(--color-black);
+  }
+
+  .nav-logo .nav-subtitle {
+    font-size: 0.9rem; /* Smaller subtitle on mobile */
+  }
+
+  /* --- ISOLATED NAV BAR ICON STYLES MOBILE --- */
+  .nav-links-and-icons {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduced gap for mobile */
+  }
+
+  .nav-contact-icons {
+    display: flex;
+    gap: 8px; /* Tighter gap for mobile icons */
+  }
+  
+  .nav-icon-link {
+    width: 32px; /* Smaller touch target size for mobile */
+    height: 32px;
+  }
+
+  .nav-icon-link .nav-icon {
+    width: 16px; /* Smaller SVG size for mobile */
+    height: 16px;
+  }
+  /* ------------------------------------------- */
+
+  .nav-links {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .card-image-container {
+    height: 350px;
+  }
+
+  .about-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .about-photo {
+    position: static;
+    display: flex;
+    justify-content: center;
+  }
+
+  .profile-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .about-text p {
+    text-align: left;
+    font-size: 1rem;
+  }
+
+  .contact-info {
+    justify-content: center;
+    padding-top: 2rem;
+  }
+
+  .email-contact {
+    padding: 0.6rem 1.1rem;
+  }
+
+  .email-text {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  .project-title {
+    font-size: 2rem;
+  }
+
+  .side-by-side {
+    grid-template-columns: 1fr;
+  }
+
+  .project-container,
+  .page-container {
+    padding: 0 1rem;
+  }
+
+  /* Project page mobile optimization */
+  .project-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .project-page {
+    padding: 2rem 0;
+  }
+
+  .project-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .project-title {
+    font-size: 1.75rem;
+    line-height: 1.3;
+  }
+
+  .project-overview {
+    font-size: 0.5rem;
+    line-height: 0.5;
+  }
+
+  .project-content {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .project-content h2 {
+    font-size: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Images and videos optimized for mobile */
+  .project-content img,
+  .project-content video {
+    margin: 1.5rem 0;
+    border-radius: 4px;
+  }
+
+  /* Side by side becomes single column */
+  .side-by-side {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Code blocks scroll horizontally */
+  .project-content pre {
+    display: block;
+    overflow-x: auto;
+    padding: 1rem;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Tables become scrollable */
+  .project-content table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .project-content table th,
+  .project-content table td {
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Footer spacing */
+  .project-footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+
+  .back-link {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+    /* Carousel mobile adjustments */
+  .carousel-inner {
+    height: 400px;
+  }
+
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel-nav svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carousel-prev {
+    left: 10px;
+  }
+
+  .carousel-next {
+    right: 10px;
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .carousel-dot.active {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 0.75rem;
+  }
+
+  .nav-link {
+    font-size: 0.85rem;
+  }
+
+  .card-image-container {
+    height: 300px;
+  }
+
+  /* Project page small mobile */
+  .project-container {
+    padding: 0 0.75rem;
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+  }
+
+  .project-content {
+    font-size: 0.9rem;
+  }
+
+  .project-content h2 {
+    font-size: 1.35rem;
+  }
+
+  .project-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .project-tags {
+    gap: 0.4rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.75rem;
+  }
+
+  .project-content pre {
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .back-link {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+
+    /* Carousel small mobile adjustments */
+  .carousel-inner {
+    height: 300px;
+  }
+
+  .carousel-nav {
+    width: 36px;
+    height: 36px;
+  }
+
+  .carousel-nav svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .carousel-prev {
+    left: 8px;
+  }
+
+  .carousel-next {
+    right: 8px;
+  }
+}
+
+/* ============================================
+    UTILITY CLASSES
+    ============================================ */
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 { margin-top: 1rem; }
+.mt-2 { margin-top: 2rem; }
+.mt-3 { margin-top: 3rem; }
+.mb-1 { margin-bottom: 1rem; }
+.mb-2 { margin-bottom: 2rem; }
+.mb-3 { margin-bottom: 3rem; }
