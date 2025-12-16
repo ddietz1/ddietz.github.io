@@ -1,6 +1,6 @@
 ---
 layout: project
-title: "Impact Dynamcis 2D Dice Simulation"
+title: "2D physics simulator for a jack in a box"
 
 carousel_images:
   - /assets/images/projects/frankahw3/Franka.gif
@@ -8,7 +8,6 @@ carousel_images:
 carousel_height: 400px
 carousel_width: auto
 preview_gif: "/assets/images/projects/314finalproject/jackinbox.gif"
-paper: "https://ieeexplore.ieee.org/document/11103627/"
 code: "https://github.com/andnet-deboer/ROS-Kobuki-Research-2022"
 # data: "https://example.com/dataset"
 tags: ["ROS 2", "Python", "Franka Robot"]
