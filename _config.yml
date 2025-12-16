@@ -1,53 +1,172 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog, values
-# which you are expected to set up once and rarely edit after that. If you find
-# yourself editing this file very often, consider using Jekyll's data files
-# feature for the data you need to update frequently.
-#
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
-#
-# If you need help with YAML syntax, here are some quick references for you:
-# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
-# https://learnxinyminutes.com/docs/yaml/
-#
-# Site settings
-# These are used to personalize your new site. If you look in the HTML files,
-# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
-# You can create any custom variable you would like, and they will be accessible
-# in the templates via {{ site.myvariable }}.
+# ============================================
+# SITE SETTINGS
+# ============================================
 
-# theme: Modernist
-title: Derek Dietz
-email: derekdietz25@gmail.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Check out some of my recent robotics projects
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://ddietz.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-github_username:  ddietz1
+title: Andnet DeBoer
+description: Robotics researcher focused on mobile manipulation, motion planning, and simulation
+author: Andnet DeBoer
+email: andnet@example.com  # Replace with your actual email
 
-# Build settings
-theme: minima
+# URL Settings
+url: "https://andnet-deboer.github.io"  # Your GitHub Pages URL
+baseurl: ""  # Leave empty for user/org pages, or "/repo-name" for project pages
+
+# ============================================
+# BUILD SETTINGS
+# ============================================
+
+# Theme (using default for GitHub Pages compatibility)
+theme: null
+
+# Markdown processor
+markdown: kramdown
+kramdown:
+  input: GFM  # GitHub Flavored Markdown
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+# Permalink structure for posts/pages
+permalink: pretty
+
+# Exclude files from build
+exclude:
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git
+  - .gitignore
+  - .sass-cache
+  - .jekyll-cache
+
+# Include hidden files (if needed)
+include:
+  - _pages
+
+# Keep files
+keep_files:
+  - assets
+
+# ============================================
+# COLLECTIONS
+# ============================================
+
+collections:
+  projects:
+    output: true
+    permalink: /projects/:title/
+    sort_by: date
+
+# Collection defaults
+defaults:
+  # Projects
+  - scope:
+      path: "_projects"
+      type: projects
+    values:
+      layout: project
+  # All files
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/default-og-image.png  # Default Open Graph image
+
+# ============================================
+# PLUGINS
+# ============================================
+
 plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
   - jekyll-feed
 
-# Exclude from processing.
-# The following items will not be processed, by default.
-# Any item listed under the `exclude:` key here will be automatically added to
-# the internal "default list".
-#
-# Excluded items can be processed by explicitly listing the directories or
-# their entries' file path in the `include:` list.
-#
-# exclude:
-#   - .sass-cache/
-#   - .jekyll-cache/
-#   - gemfiles/
-#   - Gemfile
-#   - Gemfile.lock
-#   - node_modules/
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+# Plugin settings
+feed:
+  collections:
+    projects:
+      path: /projects.xml
+
+# ============================================
+# SEO & SOCIAL
+# ============================================
+
+# Social profiles (for SEO tags)
+social:
+  name: Andnet DeBoer
+  links:
+    - https://www.linkedin.com/in/andnetdeboer/
+    - https://github.com/andnet-deboer
+
+# Twitter (optional)
+# twitter:
+#   username: your_twitter_handle
+#   card: summary
+
+# Open Graph defaults
+og_image: /assets/images/og-image.png  # Create this 1200x630px image
+
+# ============================================
+# SITE CONFIGURATION
+# ============================================
+
+# Timezone
+timezone: America/New_York  # Adjust to your timezone
+
+# Encoding
+encoding: utf-8
+
+# Liquid options
+liquid:
+  error_mode: warn
+  strict_filters: false
+  strict_variables: false
+
+# Sass/SCSS settings
+sass:
+  style: compressed
+  sass_dir: _sass
+
+# ============================================
+# CUSTOM SETTINGS
+# ============================================
+
+# Navigation links (optional - can be used in templates)
+navigation:
+  - title: Resume
+    url: /resume
+  - title: About
+    url: "/#about"
+  - title: Contact
+    url: "/#contact"
+
+# Contact information
+contact:
+  email: deboerandnet@gmail.com  
+  linkedin: https://www.linkedin.com/in/andnetdeboer/ 
+  github: https://github.com/andnet-deboer  #
+# About text (can be used in templates)
+about:
+  short: "Robotics researcher focused on mobile manipulation, motion planning, and simulation"
+  
+# Google Analytics (optional)
+# google_analytics: UA-XXXXXXXXX-X
+
+# ============================================
+# GITHUB PAGES SPECIFIC
+# ============================================
+
+# GitHub Pages will automatically add these plugins:
+# - jekyll-coffeescript
+# - jekyll-commonmark-ghpages
+# - jekyll-gist
+# - jekyll-github-metadata
+# - jekyll-paginate
+# - jekyll-relative-links
+# - jekyll-optional-front-matter
+# - jekyll-readme-index
+# - jekyll-default-layout
+# - jekyll-titles-from-headings
