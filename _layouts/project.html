@@ -1,0 +1,142 @@
+---
+layout: default
+---
+<article class="project-page">
+  <div class="project-container">
+    
+    <!-- Project Header -->
+    <header class="project-header">
+      <h1 class="project-title">{{ page.title }}</h1>
+      
+      <!-- Resource Links -->
+      <div class="project-links">
+        {% if page.paper %}
+        <a href="{{ page.paper }}" class="project-link" target="_blank" rel="noopener noreferrer">
+          <img src="/assets/images/icons/paper.png" alt="Paper icon" class="link-icon" style="width: 24px; height: 24px;">
+          <div>Paper</div>
+        </a>
+        {% endif %}
+        
+        {% if page.code %}
+        <a href="{{ page.code }}" class="project-link" target="_blank" rel="noopener noreferrer">
+          <img src="/assets/images/icons/github.png" alt="GitHub icon" class="link-icon" style="width: 24px; height: 24px;">
+          <div>&lt;/Code&gt;</div>
+        </a>
+        {% endif %}
+        
+        {% if page.data %}
+        <a href="{{ page.data }}" class="project-link" target="_blank" rel="noopener noreferrer">
+          <img src="/assets/images/icons/github.png" alt="GitHub icon" class="link-icon" style="width: 24px; height: 24px;">
+          <div>Data</div>
+        </a>
+        {% endif %}
+      </div>
+      
+      {% if page.tags %}
+      <div class="project-tags">
+        {% for tag in page.tags %}
+          <span class="tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </header>
+    
+    <!-- Image Carousel -->
+    {% if page.carousel_images %}
+    <div class="project-carousel">
+      <div class="carousel-wrapper">
+        <div class="carousel-inner" {% if page.carousel_height %}style="height: {{ page.carousel_height }};"{% endif %}>
+          {% for image in page.carousel_images %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <img src="{{ image }}" alt="Project image {{ forloop.index }}">
+          </div>
+          {% endfor %}
+          
+          <!-- Navigation Arrows -->
+          <button class="carousel-nav carousel-prev" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="carousel-nav carousel-next" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+        
+        <!-- Dots -->
+        <div class="carousel-indicators">
+          {% for image in page.carousel_images %}
+          <button class="carousel-dot {% if forloop.first %}active{% endif %}" data-slide="{{ forloop.index0 }}"></button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+    
+    <!-- Project Content -->
+    <div class="project-content">
+      {{ content }}
+    </div>
+    
+    <!-- Back to Projects Link -->
+    <div class="project-footer">
+      <a href="/" class="back-link">← Back to Projects</a>
+    </div>
+  </div>
+</article>
+
+<script>
+if (document.querySelector('.carousel-wrapper')) {
+  let currentIndex = 0;
+  const items = document.querySelectorAll('.carousel-item');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const prevBtn = document.querySelector('.carousel-prev');
+  const nextBtn = document.querySelector('.carousel-next');
+
+  function showSlide(index) {
+    items.forEach(item => item.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+    
+    currentIndex = (index + items.length) % items.length;
+    
+    items[currentIndex].classList.add('active');
+    dots[currentIndex].classList.add('active');
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => showSlide(currentIndex - 1));
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => showSlide(currentIndex + 1));
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      showSlide(parseInt(dot.getAttribute('data-slide')));
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') showSlide(currentIndex - 1);
+    if (e.key === 'ArrowRight') showSlide(currentIndex + 1);
+  });
+}
+</script>
+
+<script>
+function adjustMainContentMargin() {
+  const nav = document.querySelector('.site-nav');
+  const mainContent = document.querySelector('.main-content');
+  if (nav && mainContent) {
+    const navHeight = nav.offsetHeight;
+    mainContent.style.marginTop = navHeight + 'px';
+  }
+}
+
+// Run on load and resize
+window.addEventListener('load', adjustMainContentMargin);
+window.addEventListener('resize', adjustMainContentMargin);
+</script>
